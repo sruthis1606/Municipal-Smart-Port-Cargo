@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Municipal Smart Port</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <h2>SMART PORT</h2>
+    <p class="subtitle">Cargo Management</p>
+
+    <a href="index.html" class="active">Dashboard</a>
+    <a href="containers.html">Containers</a>
+    <a href="cargo.html">Cargo</a>
+    <a href="#">Gate Movement</a>
+    <a href="#">Tracking</a>
+    <a href="#">Reports</a>
+
+</div>
+
+
+<div class="main">
+
+    <div class="topbar">
+
+        <div>
+            <h1>Dashboard</h1>
+            <p>Municipal Smart Port Cargo Container Management System</p>
+        </div>
+
+        <div class="admin">
+            Admin
+        </div>
+
+    </div>
+
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Total Containers</h3>
+            <h2 id="totalContainers">0</h2>
+            <p>Registered containers</p>
+        </div>
+
+        <div class="card">
+            <h3>Containers in Port</h3>
+            <h2>96</h2>
+            <p>Currently inside port</p>
+        </div>
+
+        <div class="card">
+            <h3>Loaded</h3>
+            <h2>58</h2>
+            <p>Ready for movement</p>
+        </div>
+
+        <div class="card">
+            <h3>Departed</h3>
+            <h2>63</h2>
+            <p>Completed movements</p>
+        </div>
+
+    </div>
+
+
+    <div class="content-grid">
+
+        <div class="panel">
+
+            <h2>Container Status</h2>
+
+            <div class="status-row">
+                <span>In Port</span>
+                <strong>96</strong>
+            </div>
+
+            <div class="status-row">
+                <span>Loaded</span>
+                <strong>58</strong>
+            </div>
+
+            <div class="status-row">
+                <span>Stored</span>
+                <strong>31</strong>
+            </div>
+
+            <div class="status-row">
+                <span>Departed</span>
+                <strong>63</strong>
+            </div>
+
+        </div>
+
+
+        <div class="panel">
+
+            <h2>Recent Container Movements</h2>
+
+            <table>
+
+                <tr>
+                    <th>Container</th>
+                    <th>Status</th>
+                    <th>Location</th>
+                </tr>
+
+                <tr>
+                    <td>CNT001</td>
+                    <td>
+                        <span class="badge green">IN PORT</span>
+                    </td>
+                    <td>Yard A</td>
+                </tr>
+
+                <tr>
+                    <td>CNT002</td>
+                    <td>
+                        <span class="badge blue">LOADED</span>
+                    </td>
+                    <td>Yard B</td>
+                </tr>
+
+                <tr>
+                    <td>CNT003</td>
+                    <td>
+                        <span class="badge orange">STORED</span>
+                    </td>
+                    <td>Yard C</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

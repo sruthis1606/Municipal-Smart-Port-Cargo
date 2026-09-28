@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cargo Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <h2>SMART PORT</h2>
+    <p class="subtitle">Cargo Management</p>
+
+    <a href="index.html">Dashboard</a>
+    <a href="containers.html">Containers</a>
+    <a href="cargo.html" class="active">Cargo</a>
+    <a href="#">Gate Movement</a>
+    <a href="#">Tracking</a>
+    <a href="#">Reports</a>
+
+</div>
+
+
+<div class="main">
+
+    <div class="topbar">
+
+        <div>
+            <h1>Cargo Management</h1>
+            <p>Manage cargo handled through the port</p>
+        </div>
+
+        <div class="admin">
+            Admin
+        </div>
+
+    </div>
+
+
+    <div class="panel">
+
+        <div class="page-header">
+
+            <h2>Cargo List</h2>
+
+            <button onclick="showCargoForm()">
+                + Add Cargo
+            </button>
+
+        </div>
+
+
+        <div id="cargoForm" class="form-box">
+
+            <h3>Add New Cargo</h3>
+
+            <input
+                type="text"
+                id="cargoName"
+                placeholder="Cargo Name">
+
+            <input
+                type="text"
+                id="cargoType"
+                placeholder="Cargo Type">
+
+            <input
+                type="text"
+                id="quantity"
+                placeholder="Quantity">
+
+            <input
+                type="text"
+                id="containerNumber"
+                placeholder="Container Number">
+
+            <input
+                type="text"
+                id="cargoStatus"
+                placeholder="Status">
+
+            <button onclick="addCargo()">
+                Save Cargo
+            </button>
+
+        </div>
+
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Cargo Name</th>
+                    <th>Type</th>
+                    <th>Quantity</th>
+                    <th>Container</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="cargoTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+<script>
+
+function showCargoForm() {
+
+    document.getElementById("cargoForm").style.display = "block";
+
+}
+
+
+function loadCargo() {
+
+    fetch("/api/cargo")
+        .then(response => response.json())
+        .then(data => {
+
+            let table = document.getElementById("cargoTable");
+
+            table.innerHTML = "";
+
+            data.forEach(cargo => {
+
+                let row = `
+                    <tr>
+
+                        <td>${cargo.id}</td>
+
+                        <td>${cargo.cargoName}</td>
+
+                        <td>${cargo.cargoType}</td>
+
+                        <td>${cargo.quantity}</td>
+
+                        <td>${cargo.containerNumber}</td>
+
+                        <td>${cargo.status}</td>
+
+                        <td>
+                            <button onclick="deleteCargo(${cargo.id})">
+                                Delete
+                            </button>
+                        </td>
+
+                    </tr>
+                `;
+
+                table.innerHTML += row;
+
+            });
+
+        });
+
+}
+
+
+function addCargo() {
+
+    let cargo = {
+
+        cargoName:
+            document.getElementById("cargoName").value,
+
+        cargoType:
+            document.getElementById("cargoType").value,
+
+        quantity:
+            document.getElementById("quantity").value,
+
+        containerNumber:
+            document.getElementById("containerNumber").value,
+
+        status:
+            document.getElementById("cargoStatus").value
+
+    };
+
+
+    fetch("/api/cargo", {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify(cargo)
+
+    })
+    .then(response => response.json())
+    .then(data => {
+
+        alert("Cargo added successfully!");
+
+        document.getElementById("cargoName").value = "";
+        document.getElementById("cargoType").value = "";
+        document.getElementById("quantity").value = "";
+        document.getElementById("containerNumber").value = "";
+        document.getElementById("cargoStatus").value = "";
+
+        document.getElementById("cargoForm").style.display = "none";
+
+        loadCargo();
+
+    });
+
+}
+
+
+function deleteCargo(id) {
+
+    fetch("/api/cargo/" + id, {
+
+        method: "DELETE"
+
+    })
+    .then(() => {
+
+        alert("Cargo deleted!");
+
+        loadCargo();
+
+    });
+
+}
+
+
+loadCargo();
+
+</script>
+
+</body>
+
+</html>

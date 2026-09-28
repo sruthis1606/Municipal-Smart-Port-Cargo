@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Container Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <h2>SMART PORT</h2>
+    <p class="subtitle">Cargo Management</p>
+
+    <a href="index.html">Dashboard</a>
+    <a href="containers.html" class="active">Containers</a>
+    <a href="#">Cargo</a>
+    <a href="#">Gate Movement</a>
+    <a href="#">Tracking</a>
+    <a href="#">Reports</a>
+
+</div>
+
+
+<div class="main">
+
+    <div class="topbar">
+
+        <div>
+            <h1>Container Management</h1>
+            <p>Manage port cargo containers</p>
+        </div>
+
+        <div class="admin">
+            Admin
+        </div>
+
+    </div>
+
+
+    <div class="panel">
+
+        <div class="page-header">
+
+            <h2>Container List</h2>
+
+            <button onclick="showForm()">
+                + Add Container
+            </button>
+
+        </div>
+
+
+        <div id="containerForm" class="form-box">
+
+            <h3>Add New Container</h3>
+
+            <input
+                type="text"
+                id="containerNumber"
+                placeholder="Container Number">
+
+            <input
+                type="text"
+                id="type"
+                placeholder="Container Type">
+
+            <input
+                type="text"
+                id="status"
+                placeholder="Status">
+
+            <input
+                type="text"
+                id="storageLocation"
+                placeholder="Storage Location">
+
+            <button onclick="addContainer()">
+                Save Container
+            </button>
+
+        </div>
+
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Container Number</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Location</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody id="containerTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
